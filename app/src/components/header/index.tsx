@@ -32,7 +32,7 @@ export default function Header() {
           <Button>
             <img
               className="header-btn-icons"
-              src="/icons/user-logo.svg"
+              src="/icons/profile-pic.svg"
               alt="profile logo"
             />
           </Button>
