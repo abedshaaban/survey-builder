@@ -1,4 +1,4 @@
-import Button from '@/components/ui/button'
+import Button from '@/components/button'
 
 import './index.css'
 
@@ -24,9 +24,7 @@ export default function Header() {
   return (
     <header className="header">
       <Link to={'/'} className="header-title-div flex-row">
-        <img className="header-title-div-logo" src="/logo.png" alt="hospital logo" />
-
-        <span>HMS</span>
+        <span>Survey Builder</span>
       </Link>
 
       <div className="header-btn">
