@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 // import { userSlice } from '@/provider/userSlice'
 import { User } from '@/types/user'
 import { useDispatch, useSelector } from 'react-redux'
+import Header from '@/components/header'
 
 export default function App() {
   const user: User | null = useSelector((state: any) => state.user.user)
@@ -30,6 +31,8 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
+        <Header />
+
         <Routes>
           {!user ? (
             <Route path="*" element={<Auth />} />
