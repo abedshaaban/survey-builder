@@ -1,19 +1,17 @@
 import jwt from 'jsonwebtoken'
 
-const JWT_SECRET = 'we_hit_those'
-
 const createJWT = (payload) => {
   return jwt.sign(
     {
       ...payload
     },
-    JWT_SECRET,
+    'we_hit_those',
     { expiresIn: '2 days' }
   )
 }
 
 const decodeJWT = (token) => {
-  return jwt.verify(token, JWT_SECRET)
+  return jwt.verify(token, 'we_hit_those')
 }
 
 export { createJWT, decodeJWT }

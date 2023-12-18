@@ -1,5 +1,15 @@
 import User from '../models/user.model.js'
 
+const getUser = async (req, res) => {
+  const user = req?.user
+
+  const { password: hashedPassword, _id, ...userDetails } = user.toJSON()
+
+  res.status(200).send({
+    user: userDetails
+  })
+}
+
 const updateProfile = async (req, res) => {
   const { firstName, lastName } = req.body
   const { email } = req.user
@@ -23,4 +33,4 @@ const updateProfile = async (req, res) => {
   }
 }
 
-export { updateProfile }
+export { updateProfile, getUser }

@@ -1,6 +1,6 @@
 import User from '../models/user.model.js'
 import bcrypt from 'bcrypt'
-import { createJWT } from '../utils/index.js'
+import jwt from 'jsonwebtoken'
 
 const login = async (req, res) => {
   const { email, password } = req.body
@@ -13,7 +13,13 @@ const login = async (req, res) => {
 
   const { password: hashedPassword, _id, ...userDetails } = user.toJSON()
 
-  const token = createJWT(userDetails)
+  const token = jwt.sign(
+    {
+      ...userDetails
+    },
+    'we_hit_those',
+    { expiresIn: '2 days' }
+  )
 
   res.status(200).send({
     user: userDetails,

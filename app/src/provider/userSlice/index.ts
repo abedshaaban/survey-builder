@@ -1,4 +1,5 @@
 import type { User } from '@/types/user'
+import { setLocal } from '@/utils'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface UserState {
@@ -14,10 +15,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<User | null>) => {
-      if (window.localStorage && action.payload?.token) {
-        window.localStorage.setItem('cookie', action.payload?.token)
-      }
-
       state.user = action.payload
     },
 

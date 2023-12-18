@@ -40,6 +40,7 @@ export default function Index() {
 
     if (res?.data?.user) {
       setLocal({ key: 'token', val: res?.data?.token })
+
       dispatch(setUser(await res?.data?.user))
 
       // const path = res?.data?.data?.privilege

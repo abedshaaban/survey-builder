@@ -2,29 +2,30 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Auth from './pages/auth'
 import Feed from './pages/feed'
 import { useEffect } from 'react'
-// import { userSlice } from '@/provider/userSlice'
+import { setUser } from '@/provider/userSlice'
 import { User } from '@/types/user'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from '@/components/header'
+import { getUserByToken } from './end-points'
 
 export default function App() {
   const user: User | null = useSelector((state: any) => state.user.user)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // const setUser = async (t: string) => {
-  //   const userData = await getUserByToken(t)
+  const getUser = async (t: string) => {
+    const res = await getUserByToken({ token: t })
 
-  //   dispatch(setSelfUser(userData))
-  // }
+    dispatch(setUser(res?.data?.user))
+  }
 
   useEffect(() => {
-    const token = localStorage.getItem('cookie')
+    const token = localStorage.getItem('token')
 
     if (user === null && token) {
-      // const runSetUser = async () => {
-      // await setUser(token)
-      // }
-      // runSetUser()
+      const runSetUser = async () => {
+        await getUser(token)
+      }
+      runSetUser()
     }
   }, [user])
 
