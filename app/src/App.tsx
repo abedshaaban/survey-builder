@@ -8,23 +8,24 @@ import Header from '@/components/header'
 import Auth from './pages/auth'
 import Feed from './pages/feed'
 import UserPage from './pages/u'
+import { getLocal } from './utils'
 
 export default function App() {
   const user: User | null = useSelector((state: any) => state.user.user)
   const dispatch = useDispatch()
 
-  const getUser = async (t: string) => {
-    const res = await getUserByToken({ token: t })
+  const getUser = async () => {
+    const res = await getUserByToken()
 
     dispatch(setUser(res?.data?.user))
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = getLocal({ key: 'token' })
 
     if (user === null && token) {
       const runSetUser = async () => {
-        await getUser(token)
+        await getUser()
       }
       runSetUser()
     }

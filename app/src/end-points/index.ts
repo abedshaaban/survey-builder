@@ -78,7 +78,9 @@ export async function updateProfile({
   return res
 }
 
-export async function getUserByToken({ token }: { token: string }) {
+export async function getUserByToken() {
+  const token = getLocal({ key: 'token' })
+
   let res = await axios.post(
     '/user/get-user',
     {},
