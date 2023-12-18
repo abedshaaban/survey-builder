@@ -17,8 +17,7 @@ export default function Index() {
     email: '',
     pwd: '',
     first_name: '',
-    last_name: '',
-    birth_date: ''
+    last_name: ''
   })
 
   function handleFormChange() {
@@ -26,7 +25,7 @@ export default function Index() {
   }
 
   function resetForm() {
-    setCredentials({ email: '', pwd: '', first_name: '', last_name: '', birth_date: '' })
+    setCredentials({ email: '', pwd: '', first_name: '', last_name: '' })
   }
 
   async function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
@@ -42,10 +41,6 @@ export default function Index() {
       setLocal({ key: 'token', val: res?.data?.token })
 
       dispatch(setUser(await res?.data?.user))
-
-      // const path = res?.data?.data?.privilege
-
-      // navigate(`/u/${path}`)
     } else {
       setErrorMsg('An error has occurred')
     }
@@ -177,24 +172,6 @@ export default function Index() {
                     required
                   />
                 </div>
-              </div>
-
-              <div className="ui-get-values">
-                <label>Birth date:</label>
-
-                <input
-                  className={'ui-input'}
-                  type={'date'}
-                  value={credentials.birth_date}
-                  placeholder={'YYYY-MM-DD'}
-                  onChange={(e) => {
-                    setCredentials({
-                      ...credentials,
-                      birth_date: e.target.value
-                    })
-                  }}
-                  required
-                />
               </div>
 
               <div className="ui-get-values">
