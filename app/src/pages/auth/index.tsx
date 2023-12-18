@@ -1,15 +1,16 @@
 // import axios from 'axios'
 
+import { Login } from '@/end-points'
 import './index.css'
 import { FormEvent, useState } from 'react'
 // import { setSelfUser } from '@/provider/selftUserSlice'
 // import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 export default function Index() {
   // const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [signIn, setSignIn] = useState(false)
+  // const navigate = useNavigate()
+  const [isSignIn, setIsSignIn] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [credentials, setCredentials] = useState({
     email: '',
@@ -20,7 +21,7 @@ export default function Index() {
   })
 
   function handleFormChange() {
-    setSignIn(!signIn)
+    setIsSignIn(!isSignIn)
   }
 
   function resetForm() {
@@ -33,57 +34,47 @@ export default function Index() {
 
     let res
 
-    //   if (signIn) {
-    //     res = await axios.post(
-    //       'http://localhost/hospital-management-system/server/signin.php',
-    //       {
-    //         email: credentials.email,
-    //         password: credentials.pwd
-    //       },
-    //       {
-    //         headers: {
-    //           Accept: 'application/json',
-    //           'Content-Type': 'application/json'
-    //         }
+    // if (isSignIn) {
+    res = await Login({ email: credentials.email, password: credentials.pwd })
+
+    console.log(res?.data)
+
+    // if (res?.data?.data) {
+    //   dispatch(setSelfUser(await res?.data?.data))
+
+    // const path = res?.data?.data?.privilege
+
+    // navigate(`/u/${path}`)
+    // } else {
+    //   setErrorMsg('An error has occurred')
+    // }
+    // } else {
+    //   res = await axios.post(
+    //     'http://localhost/hospital-management-system/server/signup.php',
+    //     {
+    //       email: credentials.email,
+    //       password: credentials.pwd,
+    //       first_name: credentials.first_name,
+    //       last_name: credentials.last_name,
+    //       birth_date: credentials.birth_date
+    //     },
+    //     {
+    //       headers: {
+    //         Accept: 'application/json',
+    //         'Content-Type': 'application/json'
     //       }
-    //     )
-
-    //     if (res?.data?.data) {
-    //       dispatch(setSelfUser(await res?.data?.data))
-
-    //       const path = res?.data?.data?.privilege
-
-    //       navigate(`/u/${path}`)
-    //     } else {
-    //       setErrorMsg('An error has occurred')
     //     }
-    //   } else {
-    //     res = await axios.post(
-    //       'http://localhost/hospital-management-system/server/signup.php',
-    //       {
-    //         email: credentials.email,
-    //         password: credentials.pwd,
-    //         first_name: credentials.first_name,
-    //         last_name: credentials.last_name,
-    //         birth_date: credentials.birth_date
-    //       },
-    //       {
-    //         headers: {
-    //           Accept: 'application/json',
-    //           'Content-Type': 'application/json'
-    //         }
-    //       }
-    //     )
+    //   )
 
-    //     setSignIn(true)
-    //   }
+    //   setIsSignIn(true)
+    // }
 
-    //   if (!res?.data?.status) {
-    //     // handle error
-    //     setErrorMsg(res?.data?.error)
-    //   }
+    // if (!res?.data?.status) {
+    //   // handle error
+    //   setErrorMsg(res?.data?.error)
+    // }
 
-    //   // console.log(res?.data)
+    // console.log(res?.data)
   }
 
   return (
@@ -91,13 +82,13 @@ export default function Index() {
       <form onSubmit={handleFormSubmit} className="home-form">
         <div className="home-form-header flex-row">
           <h2
-            className={`${signIn && 'home-form-header-not-active'}`}
+            className={`${isSignIn && 'home-form-header-not-active'}`}
             onClick={handleFormChange}
           >
             Register
           </h2>
           <h2
-            className={`${!signIn && 'home-form-header-not-active'}`}
+            className={`${!isSignIn && 'home-form-header-not-active'}`}
             onClick={handleFormChange}
           >
             Sign in
@@ -108,7 +99,7 @@ export default function Index() {
           <div style={{ color: 'red' }} className="flex-row center">
             {errorMsg}
           </div>
-          {signIn ? (
+          {isSignIn ? (
             <>
               <div className="ui-get-values">
                 <label>Email:</label>
@@ -118,10 +109,10 @@ export default function Index() {
                   type={'email'}
                   value={credentials.email}
                   placeholder={'example@domain.com'}
-                  onChange={(val) => {
+                  onChange={(e) => {
                     setCredentials({
                       ...credentials,
-                      email: val as unknown as string
+                      email: e.target.value
                     })
                   }}
                   required
@@ -136,10 +127,10 @@ export default function Index() {
                   type={'password'}
                   value={credentials.pwd}
                   placeholder={'*********'}
-                  onChange={(val) => {
+                  onChange={(e) => {
                     setCredentials({
                       ...credentials,
-                      pwd: val as unknown as string
+                      pwd: e.target.value
                     })
                   }}
                   required
@@ -158,10 +149,10 @@ export default function Index() {
                     type={'text'}
                     value={credentials.first_name}
                     placeholder={'Mohamad'}
-                    onChange={(val) => {
+                    onChange={(e) => {
                       setCredentials({
                         ...credentials,
-                        first_name: val as unknown as string
+                        first_name: e.target.value
                       })
                     }}
                     required
@@ -176,10 +167,10 @@ export default function Index() {
                     type={'text'}
                     value={credentials.last_name}
                     placeholder={'Shaaban'}
-                    onChange={(val) => {
+                    onChange={(e) => {
                       setCredentials({
                         ...credentials,
-                        last_name: val as unknown as string
+                        last_name: e.target.value
                       })
                     }}
                     required
@@ -195,10 +186,10 @@ export default function Index() {
                   type={'date'}
                   value={credentials.birth_date}
                   placeholder={'YYYY-MM-DD'}
-                  onChange={(val) => {
+                  onChange={(e) => {
                     setCredentials({
                       ...credentials,
-                      birth_date: val as unknown as string
+                      birth_date: e.target.value
                     })
                   }}
                   required
@@ -213,10 +204,10 @@ export default function Index() {
                   type={'email'}
                   value={credentials.email}
                   placeholder={'example@domain.com'}
-                  onChange={(val) => {
+                  onChange={(e) => {
                     setCredentials({
                       ...credentials,
-                      email: val as unknown as string
+                      email: e.target.value
                     })
                   }}
                   required
@@ -231,10 +222,10 @@ export default function Index() {
                   type={'password'}
                   value={credentials.pwd}
                   placeholder={'*********'}
-                  onChange={(val) => {
+                  onChange={(e) => {
                     setCredentials({
                       ...credentials,
-                      pwd: val as unknown as string
+                      pwd: e.target.value
                     })
                   }}
                   required
@@ -246,7 +237,7 @@ export default function Index() {
         </div>
 
         <div className="home-form-footer center">
-          <button type="submit">{signIn ? 'Sign in' : 'Register'}</button>
+          <button type="submit">{isSignIn ? 'Sign in' : 'Register'}</button>
         </div>
       </form>
     </div>
