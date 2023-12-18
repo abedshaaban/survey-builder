@@ -11,8 +11,6 @@ export default function Header() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const path = user?.user?.role_id === 1 ? 'admin' : 'user'
-
   const handleLogout = () => {
     Logout()
     dispatch(logoutUser())
@@ -26,7 +24,7 @@ export default function Header() {
       </Link>
 
       <div className="header-btn">
-        <Link to={`/u/${path}`}>
+        <Link to={`/u`}>
           <Button>
             <img
               className="header-btn-icons"

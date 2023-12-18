@@ -1,4 +1,4 @@
-import { removeLocal } from '@/utils'
+import { getLocal, removeLocal } from '@/utils'
 import axios from 'axios'
 
 axios.defaults.baseURL = 'http://localhost:8000'
@@ -44,6 +44,33 @@ export async function Login({ email, password }: { email: string; password: stri
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
+      }
+    }
+  )
+
+  return res
+}
+
+export async function updateProfile({
+  firstName,
+  lastName
+}: {
+  firstName: string
+  lastName: string
+}) {
+  const token = getLocal({ key: 'token' })
+
+  let res = await axios.post(
+    '/user/update-profile',
+    {
+      firstName: firstName,
+      lastName: lastName
+    },
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       }
     }
   )

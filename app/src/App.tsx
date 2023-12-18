@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Auth from './pages/auth'
-import Feed from './pages/feed'
 import { useEffect } from 'react'
 import { setUser } from '@/provider/userSlice'
 import { User } from '@/types/user'
 import { useDispatch, useSelector } from 'react-redux'
-import Header from '@/components/header'
 import { getUserByToken } from './end-points'
+import Header from '@/components/header'
+import Auth from './pages/auth'
+import Feed from './pages/feed'
+import UserPage from './pages/u'
 
 export default function App() {
   const user: User | null = useSelector((state: any) => state.user.user)
@@ -40,6 +41,7 @@ export default function App() {
           ) : (
             <>
               <Route path="/feed" index element={<Feed />} />
+              <Route path="/u" index element={<UserPage />} />
               <Route path="*" element={<p>404 page not found</p>} />
             </>
           )}
