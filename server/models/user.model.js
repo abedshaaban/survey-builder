@@ -15,12 +15,16 @@ const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    minlength: 6
+    minlength: 1
   },
   lastName: {
     type: String,
     required: true,
-    minlength: 6
+    minlength: 1
+  },
+  role: {
+    type: Number,
+    required: true
   }
 })
 

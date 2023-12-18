@@ -39,7 +39,8 @@ const register = async (req, res) => {
       email,
       password,
       firstName,
-      lastName
+      lastName,
+      role: 1
     })
 
     await user.save()

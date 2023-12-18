@@ -1,6 +1,6 @@
 // import axios from 'axios'
 
-import { Login } from '@/end-points'
+import { Login, Register } from '@/end-points'
 import './index.css'
 import { FormEvent, useState } from 'react'
 import { setLocal } from '@/utils'
@@ -34,41 +34,26 @@ export default function Index() {
 
     let res
 
-    // if (isSignIn) {
-    res = await Login({ email: credentials.email, password: credentials.pwd })
+    if (isSignIn) {
+      res = await Login({ email: credentials.email, password: credentials.pwd })
 
-    if (res?.data?.user) {
-      setLocal({ key: 'token', val: res?.data?.token })
+      if (res?.data?.user) {
+        setLocal({ key: 'token', val: res?.data?.token })
 
-      dispatch(setUser(await res?.data?.user))
+        dispatch(setUser(await res?.data?.user))
+      } else {
+        setErrorMsg('An error has occurred')
+      }
     } else {
-      setErrorMsg('An error has occurred')
+      res = await Register({
+        email: credentials.email,
+        password: credentials.pwd,
+        firstName: credentials.first_name,
+        lastName: credentials.last_name
+      })
+
+      setIsSignIn(true)
     }
-    // } else {
-    //   res = await axios.post(
-    //     'http://localhost/hospital-management-system/server/signup.php',
-    //     {
-    //       email: credentials.email,
-    //       password: credentials.pwd,
-    //       first_name: credentials.first_name,
-    //       last_name: credentials.last_name,
-    //       birth_date: credentials.birth_date
-    //     },
-    //     {
-    //       headers: {
-    //         Accept: 'application/json',
-    //         'Content-Type': 'application/json'
-    //       }
-    //     }
-    //   )
-
-    //   setIsSignIn(true)
-    // }
-
-    // if (!res?.data?.status) {
-    //   // handle error
-    //   setErrorMsg(res?.data?.error)
-    // }
 
     console.log(res?.data)
   }

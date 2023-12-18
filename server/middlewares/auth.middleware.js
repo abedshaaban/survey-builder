@@ -10,8 +10,6 @@ const authMiddleware = async (req, res, next) => {
     try {
       const decoded = jwt.verify(token, 'we_hit_those')
 
-      console.log(decoded)
-      console.log(decoded?.email)
       const user = await User.findOne({ email: decoded?.email }).select('-password')
 
       req.user = user
