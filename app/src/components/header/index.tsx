@@ -24,6 +24,14 @@ export default function Header() {
       </Link>
 
       <div className="header-btn">
+        {user?.user?.role === 2 && (
+          <Link to={'/u/create'}>
+            <Button className="header-btn-create">
+              <h3>Create</h3>
+            </Button>
+          </Link>
+        )}
+
         <Link to={`/u`}>
           <Button>
             <img
