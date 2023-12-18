@@ -1,13 +1,13 @@
 import User from '../models/user.model.js'
 
 const updateProfile = async (req, res) => {
-  const { email, firstName, lastName } = req.body
+  const { firstName, lastName } = req.body
+  const { email } = req.user
 
   const user = await User.findOne({ email })
 
   try {
-    user.updateOne({
-      email: email || user.email,
+    await user.updateOne({
       firstName: firstName || user.firstName,
       lastName: lastName || user.lastName
     })
@@ -18,7 +18,7 @@ const updateProfile = async (req, res) => {
   } catch (error) {
     res.status(500).send({
       status: false,
-      error: e
+      error: error
     })
   }
 }
