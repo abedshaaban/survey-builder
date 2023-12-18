@@ -1,4 +1,4 @@
-import { getLocal, removeLocal } from '@/utils'
+import { removeLocal } from '@/utils'
 import axios from 'axios'
 
 axios.defaults.baseURL = 'http://localhost:8000'
