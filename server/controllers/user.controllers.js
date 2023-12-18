@@ -1,4 +1,5 @@
 import User from '../models/user.model.js'
+import Survey from '../models/survey.model.js'
 
 const getUser = async (req, res) => {
   const user = req?.user
@@ -7,6 +8,14 @@ const getUser = async (req, res) => {
 
   res.status(200).send({
     user: userDetails
+  })
+}
+
+const getSurvey = async (req, res) => {
+  const feed = await Survey.find()
+
+  res.status(200).send({
+    feed: feed
   })
 }
 
@@ -33,4 +42,4 @@ const updateProfile = async (req, res) => {
   }
 }
 
-export { updateProfile, getUser }
+export { updateProfile, getUser, getSurvey }
