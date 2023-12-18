@@ -4,7 +4,6 @@ import { User } from '@/types/user'
 import { useNavigate } from 'react-router-dom'
 import Button from '@/components/button'
 import { updateProfile } from '@/end-points'
-import { getLocal } from '@/utils'
 
 type Props = {
   user: User | null
