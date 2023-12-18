@@ -8,6 +8,7 @@ import Header from '@/components/header'
 import Auth from './pages/auth'
 import Feed from './pages/feed'
 import UserPage from './pages/u'
+import CreatePage from './pages/u/create'
 import { getLocal } from './utils'
 
 export default function App() {
@@ -44,6 +45,8 @@ export default function App() {
               <Route path="/feed" index element={<Feed />} />
               <Route path="/u" index element={<UserPage />} />
               <Route path="*" element={<p>404 page not found</p>} />
+
+              {user?.role === 2 && <Route path="/u/create" element={<CreatePage />} />}
             </>
           )}
         </Routes>
