@@ -1,4 +1,4 @@
-import { getLocal } from '@/utils'
+import { getLocal, removeLocal } from '@/utils'
 import axios from 'axios'
 
 axios.defaults.baseURL = 'http://localhost:8000'
@@ -20,6 +20,7 @@ export async function Login({ email, password }: { email: string; password: stri
 
   return res
 }
+
 export async function getUserByToken({ token }: { token: string }) {
   let res = await axios.post(
     '/user/get-user',
@@ -34,4 +35,8 @@ export async function getUserByToken({ token }: { token: string }) {
   )
 
   return res
+}
+
+export async function Logout() {
+  removeLocal({ key: 'token' })
 }

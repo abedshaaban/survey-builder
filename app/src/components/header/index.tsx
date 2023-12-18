@@ -1,12 +1,10 @@
 import Button from '@/components/button'
-
-import './index.css'
-
-// import { logoutSelfUser } from '@/provider/selftUserSlice'
+import { logoutUser } from '@/provider/userSlice'
 import store from '@/provider/store'
-// import { removeJWTToken } from '@/util'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { Logout } from '@/end-points'
+import './index.css'
 
 export default function Header() {
   const { user } = store.getState()
@@ -16,9 +14,9 @@ export default function Header() {
   const path = user?.user?.role_id === 1 ? 'admin' : 'user'
 
   const handleLogout = () => {
-    // removeJWTToken()
-    // dispatch(logoutSelfUser)
-    // navigate(0)
+    Logout()
+    dispatch(logoutUser())
+    navigate(0)
   }
 
   return (
