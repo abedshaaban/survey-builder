@@ -3,12 +3,13 @@
 import { Login } from '@/end-points'
 import './index.css'
 import { FormEvent, useState } from 'react'
-// import { setSelfUser } from '@/provider/selftUserSlice'
-// import { useDispatch } from 'react-redux'
+import { setLocal } from '@/utils'
+import { setUser } from '@/provider/userSlice'
+import { useDispatch } from 'react-redux'
 // import { useNavigate } from 'react-router-dom'
 
 export default function Index() {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   // const navigate = useNavigate()
   const [isSignIn, setIsSignIn] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
@@ -37,17 +38,16 @@ export default function Index() {
     // if (isSignIn) {
     res = await Login({ email: credentials.email, password: credentials.pwd })
 
-    console.log(res?.data)
+    if (res?.data?.user) {
+      setLocal({ key: 'token', val: res?.data?.token })
+      dispatch(setUser(await res?.data?.user))
 
-    // if (res?.data?.data) {
-    //   dispatch(setSelfUser(await res?.data?.data))
+      // const path = res?.data?.data?.privilege
 
-    // const path = res?.data?.data?.privilege
-
-    // navigate(`/u/${path}`)
-    // } else {
-    //   setErrorMsg('An error has occurred')
-    // }
+      // navigate(`/u/${path}`)
+    } else {
+      setErrorMsg('An error has occurred')
+    }
     // } else {
     //   res = await axios.post(
     //     'http://localhost/hospital-management-system/server/signup.php',
@@ -74,7 +74,7 @@ export default function Index() {
     //   setErrorMsg(res?.data?.error)
     // }
 
-    // console.log(res?.data)
+    console.log(res?.data)
   }
 
   return (
