@@ -1,0 +1,29 @@
+.checbox-questions {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checbox-questions-title {
+  font-size: 24px;
+}
+
+.checkbox-questions-list {
+  width: 100%;
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-questions-list-item {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.checkbox-questions-list-item > input,
+.checkbox-questions-list-item > label {
+  cursor: pointer;
+}
