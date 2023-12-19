@@ -15,16 +15,39 @@ export default function CreatePage() {
     }
   }, [user.user])
 
+  type InsertQProps = { questionNode: string }
+
+  function insertQuestion({ questionNode }: InsertQProps) {
+    console.log(questionNode)
+  }
+
   return (
     <div className="layout">
       <div className="survey-btns">
-        <Button onClick={() => {}} type="secondary">
+        <Button
+          onClick={() => {
+            insertQuestion({ questionNode: 'TextInput' })
+          }}
+          type="secondary"
+        >
           Add Input
         </Button>
-        <Button onClick={() => {}} type="secondary">
+
+        <Button
+          onClick={() => {
+            insertQuestion({ questionNode: 'CheckBox' })
+          }}
+          type="secondary"
+        >
           Add Check Box
         </Button>
-        <Button onClick={() => {}} type="secondary">
+
+        <Button
+          onClick={() => {
+            insertQuestion({ questionNode: 'Radio' })
+          }}
+          type="secondary"
+        >
           Add Radio
         </Button>
       </div>
