@@ -22,3 +22,15 @@
 .important:hover {
   background-color: rgba(var(--primary-red), 0.6);
 }
+
+.secondary {
+  background-color: rgba(var(--primary-purple), 0.21);
+}
+
+.secondary:hover {
+  background-color: rgba(var(--primary-purple), 0.6);
+}
+
+.is-text {
+  padding: 6px 9px;
+}

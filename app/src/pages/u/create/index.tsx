@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import store from '@/provider/store'
 import { User } from '@/types/user'
 import { TextInput, Radio, CheckBox } from '@/components/form-content'
+import Button from '@/components/button'
 
 export default function CreatePage() {
   const { user } = store.getState()
@@ -16,6 +17,18 @@ export default function CreatePage() {
 
   return (
     <div className="layout">
+      <div className="survey-btns">
+        <Button onClick={() => {}} type="secondary">
+          Add Input
+        </Button>
+        <Button onClick={() => {}} type="secondary">
+          Add Check Box
+        </Button>
+        <Button onClick={() => {}} type="secondary">
+          Add Radio
+        </Button>
+      </div>
+
       <TextInput />
       <Radio />
       <CheckBox

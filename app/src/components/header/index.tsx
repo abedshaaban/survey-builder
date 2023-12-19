@@ -26,14 +26,14 @@ export default function Header() {
       <div className="header-btn">
         {user?.user?.role === 2 && (
           <Link to={'/u/create'}>
-            <Button className="header-btn-create">
+            <Button className="header-btn-create" isText={false}>
               <h3>Create</h3>
             </Button>
           </Link>
         )}
 
         <Link to={`/u`}>
-          <Button>
+          <Button isText={false}>
             <img
               className="header-btn-icons"
               src="/icons/profile-pic.svg"
@@ -42,7 +42,7 @@ export default function Header() {
           </Button>
         </Link>
 
-        <Button type="important" onClick={handleLogout}>
+        <Button type="important" onClick={handleLogout} isText={false}>
           <img
             style={{ padding: '9px' }}
             className="header-btn-icons"
