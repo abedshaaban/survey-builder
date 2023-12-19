@@ -25,13 +25,7 @@ export default function Index({ title, choices }: CheckBoxProps) {
         {choices?.map((q) => {
           return (
             <div className="checkbox-questions-list-item" key={q.id}>
-              <input
-                id={q.id}
-                type="checkbox"
-                name="text"
-                value={q.id}
-                onChange={handleCheck}
-              />
+              <input id={q.id} type="checkbox" value={q.id} onChange={handleCheck} />
 
               <label htmlFor={q.id}>{q.label}</label>
             </div>

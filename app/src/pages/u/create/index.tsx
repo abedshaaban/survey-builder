@@ -71,7 +71,19 @@ export default function CreatePage() {
             />
           )
         } else if (q.type === 'radio') {
-          return <Radio key={i} />
+          return (
+            <Radio
+              key={i}
+              title={'what is on your mind?'}
+              choices={[
+                { id: '1-q', label: 'fortnite' },
+                { id: '2-q', label: 'fortnite lego' },
+                { id: '3-q', label: 'fortnite racing' },
+                { id: '4-q', label: 'fortnite pvp' },
+                { id: '5-q', label: 'FORTNITE IN CAPS' }
+              ]}
+            />
+          )
         } else if (q.type === 'check-box') {
           return (
             <CheckBox
