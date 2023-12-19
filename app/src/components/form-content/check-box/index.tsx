@@ -1,15 +1,6 @@
 import { ChangeEvent, useState } from 'react'
 import './index.css'
-
-type checkBoxItem = {
-  id: string
-  label: string
-}
-
-type CheckBoxProps = {
-  title: string
-  choices: checkBoxItem[]
-}
+import { CheckBoxProps } from '@/types/survey'
 
 export default function Index({ title, choices }: CheckBoxProps) {
   const [checked, setChecked] = useState<[] | string[]>([])
