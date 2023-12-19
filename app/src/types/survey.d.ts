@@ -8,6 +8,12 @@ type CheckBoxProps = {
   choices: checkBoxItem[]
 }
 
+type InputProps = {
+  id: string
+  title: string
+  placeholder: string
+}
+
 export type Survey = {
   type: string
   title: string

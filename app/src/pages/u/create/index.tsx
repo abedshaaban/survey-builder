@@ -62,7 +62,14 @@ export default function CreatePage() {
 
       {questions?.qs?.map((q, i) => {
         if (q.type === 'text-input') {
-          return <TextInput key={i} />
+          return (
+            <TextInput
+              key={i}
+              id={'1'}
+              title={'tell me about yourself'}
+              placeholder={'write here'}
+            />
+          )
         } else if (q.type === 'radio') {
           return <Radio key={i} />
         } else if (q.type === 'check-box') {

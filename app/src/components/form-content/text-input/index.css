@@ -1,0 +1,18 @@
+.input-question {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-question-title {
+  font-size: 24px;
+}
+
+.input-question-input {
+  width: 100%;
+  padding: 6px 9px;
+  border: 1px solid grey;
+  border-radius: 6px;
+}

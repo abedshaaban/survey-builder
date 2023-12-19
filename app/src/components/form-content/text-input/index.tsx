@@ -1,9 +1,19 @@
 import './index.css'
+import type { InputProps } from '@/types/survey'
 
-export default function Index() {
+export default function Index({ id, title, placeholder }: InputProps) {
   return (
-    <div>
-      <input type="text" placeholder="text" />
+    <div className="input-question">
+      <label className="input-question-title" htmlFor={id}>
+        {title}
+      </label>
+
+      <input
+        type="text"
+        id={id}
+        placeholder={placeholder}
+        className="input-question-input"
+      />
     </div>
   )
 }
