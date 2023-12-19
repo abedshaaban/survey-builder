@@ -13,6 +13,7 @@
 .input-question-input {
   width: 100%;
   padding: 6px 9px;
+  margin-left: 10px;
   border: 1px solid grey;
   border-radius: 6px;
 }

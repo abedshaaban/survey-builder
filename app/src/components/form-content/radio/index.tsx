@@ -3,7 +3,9 @@ import './index.css'
 import type { CheckBoxProps } from '@/types/survey'
 
 export default function Index({ title, choices }: CheckBoxProps) {
-  const [selectedChoice, setSelectedChoice] = useState<string | null>(null)
+  const [selectedChoice, setSelectedChoice] = useState<string | null>(
+    choices[0]?.id || null
+  )
 
   const handleCheckboxChange = (id: string) => {
     setSelectedChoice(id === selectedChoice ? null : id)
