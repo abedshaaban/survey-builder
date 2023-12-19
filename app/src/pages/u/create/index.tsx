@@ -5,6 +5,7 @@ import { User } from '@/types/user'
 import { TextInput, Radio, CheckBox } from '@/components/form-content'
 import Button from '@/components/button'
 import type { Survey } from '@/types/survey'
+import { nanoid } from 'nanoid'
 
 export default function CreatePage() {
   const { user } = store.getState()
@@ -65,7 +66,7 @@ export default function CreatePage() {
           return (
             <TextInput
               key={i}
-              id={'1'}
+              id={nanoid(9)}
               title={'tell me about yourself'}
               placeholder={'write here'}
             />
@@ -76,11 +77,11 @@ export default function CreatePage() {
               key={i}
               title={'what is on your mind?'}
               choices={[
-                { id: '1-q', label: 'fortnite' },
-                { id: '2-q', label: 'fortnite lego' },
-                { id: '3-q', label: 'fortnite racing' },
-                { id: '4-q', label: 'fortnite pvp' },
-                { id: '5-q', label: 'FORTNITE IN CAPS' }
+                { id: nanoid(9), label: 'fortnite' },
+                { id: nanoid(9), label: 'fortnite lego' },
+                { id: nanoid(9), label: 'fortnite racing' },
+                { id: nanoid(9), label: 'fortnite pvp' },
+                { id: nanoid(9), label: 'FORTNITE IN CAPS' }
               ]}
             />
           )
@@ -90,10 +91,10 @@ export default function CreatePage() {
               key={i}
               title={'what is the animal that has a tale?'}
               choices={[
-                { id: '1', label: 'bird' },
-                { id: '2', label: 'fish' },
-                { id: '3', label: 'food' },
-                { id: '4', label: 'bear' }
+                { id: nanoid(9), label: 'bird' },
+                { id: nanoid(9), label: 'fish' },
+                { id: nanoid(9), label: 'food' },
+                { id: nanoid(9), label: 'bear' }
               ]}
             />
           )
