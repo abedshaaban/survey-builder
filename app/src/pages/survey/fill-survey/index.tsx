@@ -1,3 +1,4 @@
+import Button from '@/components/button'
 import './index.css'
 import { CheckBox, Radio, TextInput } from '@/components/form-content'
 import { GetSurveysById } from '@/end-points'
@@ -20,6 +21,8 @@ export default function Index() {
     getSurvey()
   }, [])
 
+  async function handleSubmit() {}
+
   return (
     <div className="fill-survey-page">
       <h1 className="fill-survey-page-h1">{survey?.title}</h1>
@@ -35,6 +38,10 @@ export default function Index() {
           return <CheckBox key={i} title={q.title} choices={q.questions} />
         }
       })}
+
+      <div className="survey-footer">
+        <Button onClick={handleSubmit}>Submit</Button>
+      </div>
     </div>
   )
 }
