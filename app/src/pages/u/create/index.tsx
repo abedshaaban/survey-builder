@@ -61,6 +61,20 @@ export default function CreatePage() {
         </Button>
       </div>
 
+      <div className="survey-title-div">
+        <input
+          type="text"
+          placeholder="Title"
+          value={questions.title}
+          onChange={(e) => {
+            setQuestions((prevQuestions) => ({
+              ...prevQuestions,
+              title: e.target.value
+            }))
+          }}
+        />
+      </div>
+
       {questions?.qs?.map((q, i) => {
         if (q.type === 'text-input') {
           return (

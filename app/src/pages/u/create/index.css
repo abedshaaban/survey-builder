@@ -17,3 +17,18 @@
   gap: 10px;
   margin-bottom: 10px;
 }
+
+.survey-title-div {
+  width: 100%;
+  max-width: 600px;
+}
+
+.survey-title-div > input {
+  width: 100%;
+  font-size: 33px;
+}
+
+.survey-title-div > input:focus-visible {
+  border: 1px;
+  outline: none;
+}
