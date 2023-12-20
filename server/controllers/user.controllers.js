@@ -14,8 +14,6 @@ const getUser = async (req, res) => {
 const getSurvey = async (req, res) => {
   const feed = await Survey.find({}, { title: 1 })
 
-  console.log(feed)
-
   res.status(200).send({ feed })
 }
 
