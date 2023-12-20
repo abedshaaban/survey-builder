@@ -2,8 +2,19 @@
   width: 100px;
   height: 150px;
   display: block;
+  border-radius: 8px;
+  padding: 6px;
+  text-align: center;
 }
 
 .file > img {
   width: 100%;
+}
+
+.file > p {
+  font-size: 14px;
+}
+
+.file:hover {
+  background-color: rgba(var(--secondary-green), 0.21);
 }
