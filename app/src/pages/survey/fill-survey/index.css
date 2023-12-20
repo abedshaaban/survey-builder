@@ -1,0 +1,8 @@
+.fill-survey-page {
+  width: 100%;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
