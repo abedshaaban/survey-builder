@@ -5,7 +5,7 @@ type checkBoxItem = {
 
 type CheckBoxProps = {
   title: string
-  choices: checkBoxItem[]
+  choices: null | checkBoxItem[]
 }
 
 type InputProps = {
@@ -18,7 +18,7 @@ export type QuestionType = {
   type: string
   title: string
   placeholder?: string
-  questions: [] | checkBoxItem[]
+  questions: null | checkBoxItem[]
 }
 
 export type Survey = {

@@ -52,7 +52,7 @@ export default function CreatePage() {
               title: 'How is your day?',
               type: 'text-input',
               placeholder: 'answer goes here',
-              questions: []
+              questions: null
             })
           }}
           type="secondary"
