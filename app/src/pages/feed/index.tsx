@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import './index.css'
 import { GetSurveys } from '@/end-points'
-import Button from '@/components/button'
 import File from '@/components/file'
 
 export default function Feed() {

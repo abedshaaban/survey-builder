@@ -3,6 +3,10 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'http://localhost:8000'
 
+type SurveyIDProps = {
+  id: string
+}
+
 export async function Register({
   email,
   password,
@@ -106,6 +110,24 @@ export async function GetSurveys() {
   let res = await axios.post(
     '/user/get-survey',
     {},
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
+
+  return res
+}
+
+export async function GetSurveysById({ id }: SurveyIDProps) {
+  const token = getLocal({ key: 'token' })
+
+  let res = await axios.post(
+    '/user/get-survey-by-id',
+    { id: id },
     {
       headers: {
         Accept: 'application/json',

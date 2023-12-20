@@ -17,6 +17,14 @@ const getSurvey = async (req, res) => {
   res.status(200).send({ feed })
 }
 
+const getSurveyByID = async (req, res) => {
+  const { id } = req.body
+
+  const survey = await Survey.findById(id)
+
+  res.status(200).send({ survey })
+}
+
 const updateProfile = async (req, res) => {
   const { firstName, lastName } = req.body
   const { email } = req.user
@@ -40,4 +48,4 @@ const updateProfile = async (req, res) => {
   }
 }
 
-export { updateProfile, getUser, getSurvey }
+export { updateProfile, getUser, getSurvey, getSurveyByID }
