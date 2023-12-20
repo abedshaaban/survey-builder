@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <header className="header">
-      <Link to={'/'} className="header-title-div flex-row">
+      <Link to={'/feed'} className="header-title-div flex-row">
         <span>Survey Builder</span>
       </Link>
 
