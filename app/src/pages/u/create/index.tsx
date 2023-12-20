@@ -4,15 +4,16 @@ import store from '@/provider/store'
 import { User } from '@/types/user'
 import { TextInput, Radio, CheckBox } from '@/components/form-content'
 import Button from '@/components/button'
-import type { Survey } from '@/types/survey'
+import type { Survey, QuestionType } from '@/types/survey'
 import { nanoid } from 'nanoid'
 
 export default function CreatePage() {
   const { user } = store.getState()
   const [currentUser, setCurrentUser] = useState<User | null>(null)
-  const [questions, setQuestions] = useState<{ title: string; qs: Survey[] }>({
+  const [questions, setQuestions] = useState<Survey>({
+    id: nanoid(9),
     title: '',
-    qs: []
+    questions: []
   })
 
   useEffect(() => {
@@ -21,21 +22,31 @@ export default function CreatePage() {
     }
   }, [user.user])
 
-  function insertQuestion({ type, title, questions }: Survey) {
+  function insertQuestion({ id, type, title, questions }: QuestionType) {
     setQuestions((prevQuestions) => ({
       ...prevQuestions,
-      qs: [...prevQuestions.qs, { title: title, type: type, questions: questions }]
+      questions: [
+        ...prevQuestions.questions,
+        { id: id, title: title, type: type, questions: questions }
+      ]
     }))
   }
 
-  // console.log(questions)
+  function handlePublish() {
+    console.log(questions)
+  }
 
   return (
     <div className="layout">
       <div className="survey-btns">
         <Button
           onClick={() => {
-            insertQuestion({ title: '', type: 'text-input', questions: [] })
+            insertQuestion({
+              id: nanoid(9),
+              title: '',
+              type: 'text-input',
+              questions: []
+            })
           }}
           type="secondary"
         >
@@ -44,7 +55,7 @@ export default function CreatePage() {
 
         <Button
           onClick={() => {
-            insertQuestion({ title: '', type: 'check-box', questions: [] })
+            insertQuestion({ id: nanoid(9), title: '', type: 'check-box', questions: [] })
           }}
           type="secondary"
         >
@@ -53,7 +64,7 @@ export default function CreatePage() {
 
         <Button
           onClick={() => {
-            insertQuestion({ title: '', type: 'radio', questions: [] })
+            insertQuestion({ id: nanoid(9), title: '', type: 'radio', questions: [] })
           }}
           type="secondary"
         >
@@ -75,7 +86,7 @@ export default function CreatePage() {
         />
       </div>
 
-      {questions?.qs?.map((q, i) => {
+      {questions?.questions?.map((q, i) => {
         if (q.type === 'text-input') {
           return (
             <TextInput
@@ -116,7 +127,7 @@ export default function CreatePage() {
       })}
 
       <div className="survey-footer">
-        <Button>Publish</Button>
+        <Button onClick={handlePublish}>Publish</Button>
       </div>
     </div>
   )

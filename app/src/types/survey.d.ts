@@ -14,8 +14,15 @@ type InputProps = {
   placeholder: string
 }
 
-export type Survey = {
+export type QuestionType = {
+  id: string
   type: string
   title: string
   questions: []
+}
+
+export type Survey = {
+  id: string
+  title: string
+  questions: QuestionType[]
 }
