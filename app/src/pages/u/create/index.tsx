@@ -22,12 +22,18 @@ export default function CreatePage() {
     }
   }, [user.user])
 
-  function insertQuestion({ id, type, title, questions }: QuestionType) {
+  function insertQuestion({ id, type, title, questions, placeholder }: QuestionType) {
     setQuestions((prevQuestions) => ({
       ...prevQuestions,
       questions: [
         ...prevQuestions.questions,
-        { id: id, title: title, type: type, questions: questions }
+        {
+          id: id,
+          title: title,
+          type: type,
+          questions: questions,
+          placeholder: placeholder
+        }
       ]
     }))
   }
@@ -43,8 +49,9 @@ export default function CreatePage() {
           onClick={() => {
             insertQuestion({
               id: nanoid(9),
-              title: '',
+              title: 'How is your day?',
               type: 'text-input',
+              placeholder: 'answer goes here',
               questions: []
             })
           }}
@@ -55,7 +62,17 @@ export default function CreatePage() {
 
         <Button
           onClick={() => {
-            insertQuestion({ id: nanoid(9), title: '', type: 'check-box', questions: [] })
+            insertQuestion({
+              id: nanoid(9),
+              title: 'what are your best weapons?',
+              type: 'check-box',
+              questions: [
+                { id: nanoid(9), label: 'Pump' },
+                { id: nanoid(9), label: 'AR' },
+                { id: nanoid(9), label: 'tactical' },
+                { id: nanoid(9), label: 'sniper' }
+              ]
+            })
           }}
           type="secondary"
         >
@@ -64,7 +81,18 @@ export default function CreatePage() {
 
         <Button
           onClick={() => {
-            insertQuestion({ id: nanoid(9), title: '', type: 'radio', questions: [] })
+            insertQuestion({
+              id: nanoid(9),
+              title: 'what is on your mind?',
+              type: 'radio',
+              questions: [
+                { id: nanoid(9), label: 'fortnite' },
+                { id: nanoid(9), label: 'fortnite lego' },
+                { id: nanoid(9), label: 'fortnite racing' },
+                { id: nanoid(9), label: 'fortnite pvp' },
+                { id: nanoid(9), label: 'FORTNITE IN CAPS' }
+              ]
+            })
           }}
           type="secondary"
         >
@@ -89,40 +117,12 @@ export default function CreatePage() {
       {questions?.questions?.map((q, i) => {
         if (q.type === 'text-input') {
           return (
-            <TextInput
-              key={i}
-              id={nanoid(9)}
-              title={'tell me about yourself'}
-              placeholder={'write here'}
-            />
+            <TextInput key={i} title={q.title} placeholder={q.placeholder as string} />
           )
         } else if (q.type === 'radio') {
-          return (
-            <Radio
-              key={i}
-              title={'what is on your mind?'}
-              choices={[
-                { id: nanoid(9), label: 'fortnite' },
-                { id: nanoid(9), label: 'fortnite lego' },
-                { id: nanoid(9), label: 'fortnite racing' },
-                { id: nanoid(9), label: 'fortnite pvp' },
-                { id: nanoid(9), label: 'FORTNITE IN CAPS' }
-              ]}
-            />
-          )
+          return <Radio key={i} title={q.title} choices={q.questions} />
         } else if (q.type === 'check-box') {
-          return (
-            <CheckBox
-              key={i}
-              title={'what is the animal that has a tale?'}
-              choices={[
-                { id: nanoid(9), label: 'bird' },
-                { id: nanoid(9), label: 'fish' },
-                { id: nanoid(9), label: 'food' },
-                { id: nanoid(9), label: 'bear' }
-              ]}
-            />
-          )
+          return <CheckBox key={i} title={q.title} choices={q.questions} />
         }
       })}
 
