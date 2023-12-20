@@ -6,7 +6,8 @@
   gap: 12px;
 }
 
-.checbox-questions-title {
+.checbox-questions-title,
+.checbox-questions-title-create {
   font-size: 24px;
   font-weight: 500;
 }
@@ -16,6 +17,7 @@
   padding-left: 12px;
   display: flex;
   flex-direction: column;
+  gap: 9px;
 }
 
 .checkbox-questions-list-item {
@@ -27,4 +29,9 @@
 .checkbox-questions-list-item > input,
 .checkbox-questions-list-item > label {
   cursor: pointer;
+}
+
+.checkbox-questions-list-item-input-create {
+  padding: 3px 4px;
+  outline: none;
 }

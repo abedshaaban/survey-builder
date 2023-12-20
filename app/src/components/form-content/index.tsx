@@ -1,5 +1,5 @@
 import TextInput from './text-input'
 import Radio from './radio'
-import CheckBox from './check-box'
+import { CheckBox, CreateCheckBox } from './check-box'
 
-export { TextInput, Radio, CheckBox }
+export { TextInput, Radio, CheckBox, CreateCheckBox }

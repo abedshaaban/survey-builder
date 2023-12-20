@@ -1,3 +1,4 @@
+import { Survey } from '@/types/survey'
 import { getLocal, removeLocal } from '@/utils'
 import axios from 'axios'
 
@@ -128,6 +129,24 @@ export async function GetSurveysById({ id }: SurveyIDProps) {
   let res = await axios.post(
     '/user/get-survey-by-id',
     { id: id },
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
+
+  return res
+}
+
+export async function CreateSurvey({ title, questions, id }: Survey) {
+  const token = getLocal({ key: 'token' })
+
+  let res = await axios.post(
+    '/admin/create-survey',
+    { title: title, questions: questions },
     {
       headers: {
         Accept: 'application/json',

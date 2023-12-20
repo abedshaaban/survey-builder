@@ -1,26 +1,19 @@
 import './index.css'
-import { useEffect, useState } from 'react'
-import store from '@/provider/store'
-import { User } from '@/types/user'
+import { useState } from 'react'
 import { TextInput, Radio, CheckBox } from '@/components/form-content'
 import Button from '@/components/button'
 import type { Survey, QuestionType } from '@/types/survey'
 import { nanoid } from 'nanoid'
+import { CreateSurvey } from '@/end-points'
+import { useNavigate } from 'react-router-dom'
 
 export default function CreatePage() {
-  const { user } = store.getState()
-  const [currentUser, setCurrentUser] = useState<User | null>(null)
+  const navigate = useNavigate()
   const [questions, setQuestions] = useState<Survey>({
     id: nanoid(9),
     title: '',
     questions: []
   })
-
-  useEffect(() => {
-    if (user?.user !== null) {
-      setCurrentUser(user?.user)
-    }
-  }, [user.user])
 
   function insertQuestion({ id, type, title, questions, placeholder }: QuestionType) {
     setQuestions((prevQuestions) => ({
@@ -38,8 +31,11 @@ export default function CreatePage() {
     }))
   }
 
-  function handlePublish() {
+  async function handlePublish() {
     console.log(questions)
+
+    await CreateSurvey({ title: questions.title, questions: questions.questions, id: '' })
+    navigate('/feed')
   }
 
   return (

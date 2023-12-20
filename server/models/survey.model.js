@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 const questionSchema = new mongoose.Schema({
   id: { type: String, required: true },
   title: { type: String, required: true },
-  title: { type: String, enum: ['input', 'checkbox', 'radio'], required: true },
   type: {
     type: String,
     enum: ['text-input', 'check-box', 'radio']
