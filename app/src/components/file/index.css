@@ -1,0 +1,9 @@
+.file {
+  width: 100px;
+  height: 150px;
+  display: block;
+}
+
+.file > img {
+  width: 100%;
+}
