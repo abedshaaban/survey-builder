@@ -32,3 +32,10 @@
   border: 1px;
   outline: none;
 }
+
+.survey-footer {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: flex-end;
+}

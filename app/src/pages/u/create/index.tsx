@@ -114,6 +114,10 @@ export default function CreatePage() {
           )
         }
       })}
+
+      <div className="survey-footer">
+        <Button>Publish</Button>
+      </div>
     </div>
   )
 }
