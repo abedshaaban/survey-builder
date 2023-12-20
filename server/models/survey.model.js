@@ -1,26 +1,29 @@
 import mongoose from 'mongoose'
 
-const questionsSchema = new mongoose.Schema({
-  question: { type: String, required: true },
+const questionSchema = new mongoose.Schema({
+  id: { type: String, required: true },
+  title: { type: String, required: true },
+  title: { type: String, enum: ['input', 'checkbox', 'radio'], required: true },
   type: {
     type: String,
-    enum: ['input', 'checkbox', 'radio'],
-    default: 'input'
+    enum: ['text-input', 'check-box', 'radio']
   },
-  suggestedAnswers: [{ type: String }]
+  questions: {
+    type: [
+      { id: { type: String, required: true }, label: { type: String, required: true } }
+    ],
+    required: true
+  },
+  placeholder: { type: String, required: false }
 })
 
 const surveySchema = new mongoose.Schema({
-  creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  creator_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   title: {
     type: String,
     required: true
   },
-  description: {
-    type: String,
-    required: true
-  },
-  questions: [questionsSchema]
+  questions: [questionSchema]
 })
 
 const Survey = mongoose.model('Survey', surveySchema)

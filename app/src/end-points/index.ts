@@ -99,3 +99,21 @@ export async function getUserByToken() {
 export async function Logout() {
   removeLocal({ key: 'token' })
 }
+
+export async function GetSurveys() {
+  const token = getLocal({ key: 'token' })
+
+  let res = await axios.post(
+    '/user/get-survey',
+    {},
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
+
+  return res
+}

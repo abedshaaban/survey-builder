@@ -12,11 +12,11 @@ const getUser = async (req, res) => {
 }
 
 const getSurvey = async (req, res) => {
-  const feed = await Survey.find()
+  const feed = await Survey.find({}, { title: 1 })
 
-  res.status(200).send({
-    feed: feed
-  })
+  console.log(feed)
+
+  res.status(200).send({ feed })
 }
 
 const updateProfile = async (req, res) => {
